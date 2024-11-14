@@ -19,12 +19,12 @@ Follow the steps below to set up and run the project locally.
 ### 1. Clone the Repository
     
     ```bash
-        git clone https://github.com/01Prathamesh/UAAPIwDD.git
-        cd UAAPIwDD
+    git clone https://github.com/01Prathamesh/UAAPIwDD.git
+    cd UAAPIwDD
+    ```
 
 ### 2. Set up the Virtual Environment
-
-        I recommend using a virtual environment to isolate dependencies.
+I recommend using a virtual environment to isolate dependencies.
         
         ```bash
                 python3 -m venv env
