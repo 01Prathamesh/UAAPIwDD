@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import RegexValidator
 
-class User(AbstractUser):
+class CustomUser(AbstractUser):
     phone_number = models.CharField(
         max_length=15, 
         validators=[RegexValidator(r'^\+91\d{10}$', 'Enter a valid Indian phone number')],
