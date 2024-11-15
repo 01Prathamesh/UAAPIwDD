@@ -17,23 +17,23 @@ This project provides a Django-based User Authentication API with JWT authentica
 Follow the steps below to set up and run the project locally.
 
 ### 1. Clone the Repository
-    
-    ```bash
+```bash
     git clone https://github.com/01Prathamesh/UAAPIwDD.git
     cd UAAPIwDD
-    ```
+```
 
 ### 2. Set up the Virtual Environment
 I recommend using a virtual environment to isolate dependencies.
-        
-        ```bash
-                python3 -m venv env
-                source env/bin/activate  # On Windows: env\Scripts\activate
+```bash
+    python3 -m venv env
+    source env/bin/activate  # On Windows: env\Scripts\activate
+```
 
 ### 3. Install Dependencies
 Install all the necessary dependencies using pip.
-        ```bash
-        pip install -r requirements.txt
+```bash
+    pip install -r requirements.txt
+```
 
 ### 4. Configure PostgreSQL Database
 - Ensure you have PostgreSQL installed and running, or use Docker to run the database.
@@ -42,16 +42,19 @@ Install all the necessary dependencies using pip.
 
 ### 5. Apply Database Migrations
 Run Django migrations to set up the database:
-        ```bash
-        python manage.py migrate
+```bash
+    python manage.py migrate
+```
 
 ### 6. Create a Superuser (Optional)
 To access the Django admin interface, create a superuser.
-        ```bash
-        python manage.py createsuperuser
+```bash
+    python manage.py createsuperuser
+```
 
 ## Project Structure
 Here’s a high-level overview of the project structure:
+```bash
 UAAPIwDD/
 │
 ├── users/
@@ -73,6 +76,7 @@ UAAPIwDD/
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
+```
 
 ## Endpoints
 This API exposes the following endpoints for user authentication and profile management:
@@ -81,55 +85,58 @@ This API exposes the following endpoints for user authentication and profile man
 Description: Register a new user.
 
 Request Body:
-        ```json
+```json
         {
         "username": "newuser",
         "password": "password123",
         "phone_number": "9876543210",
         "date_of_birth": "1990-01-01"
         }
+```
 
 Response:
-        ```json
+```json
         {
             "message": "User created successfully"
         }
+```
 
 2. POST /api/login/
 Description: Log in and get a JWT token pair (access and refresh).
 
 Request Body:
-        ```json
-        Copy code
+```json
         {
         "username": "newuser",
         "password": "password123"
         }
+```
 
 Response:
-        ```json
-        Copy code
+```json
         {
         "access": "access_token",
         "refresh": "refresh_token"
         }
+```
 
 3. GET /api/profile/
 Description: View the authenticated user's profile (requires JWT authentication).
 
 Headers:
-        ```makefile
+```makefile
         Authorization: Bearer <access_token>
+```
 
 Response:
-        ```json
-        Copy code
+```json
         {
         "username": "newuser",
         "phone_number": "9876543210",
         "date_of_birth": "1990-01-01",
         "last_login_ip": "192.168.1.1"
         }
+```
 
 ## Testing
 This project includes unit tests written with pytest and pytest-django for the following functionalities:
@@ -140,21 +147,24 @@ This project includes unit tests written with pytest and pytest-django for the f
 
 1. Install pytest and pytest-django
 If not already installed, use the following command to install the necessary testing dependencies:
-        ```bash
+```bash
         pip install pytest pytest-django
+```
 
 2. Run Tests
 To run the test suite, use the following command:
-        ```bash
+```bash
         pytest
+```
 
 ## Docker Setup
 This project is Dockerized, allowing you to run it in containers. Follow the steps below to set up Docker and Docker Compose.
 
 1. Build and Run with Docker
 To build and run the application in Docker containers, use the following command:
-        ```bash
+```bash
         docker-compose up --build
+```
 
 This will:
 - Build the Docker image for the web application.
@@ -183,7 +193,7 @@ Once the application is running, you can access the following endpoints:
 
 ## .gitignore
 Make sure to include the following in your .gitignore to avoid committing unnecessary files:
-        ```bash
+```bash
         __pycache__/
         env/
         *.pyc
@@ -191,6 +201,7 @@ Make sure to include the following in your .gitignore to avoid committing unnece
         *.pyd
         db.sqlite3
         *.log
+```
 
 ## LICENSE
 
