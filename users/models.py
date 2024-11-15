@@ -6,6 +6,7 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(
         max_length=15, 
         validators=[RegexValidator(r'^\+91\d{10}$', 'Enter a valid Indian phone number')],
+        unique=True
     )
     date_of_birth = models.DateField()
     last_login_ip = models.GenericIPAddressField(null=True, blank=True)
