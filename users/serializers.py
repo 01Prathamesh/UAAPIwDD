@@ -12,32 +12,22 @@ phone_number_validator = RegexValidator(
     regex=r'^\+91[6-9][0-9]{9}$|^[6-9][0-9]{9}$',
     message="Enter a valid Indian phone number"
 )
-
 class RegisterSerializer(serializers.ModelSerializer):
-    # Adding the phone number validator
+    # Adding the phone number validator and ensuring it's unique
     phone_number = serializers.CharField(
         max_length=15,  # Maximum length for phone numbers with country code
         required=True,
-        validators=[phone_number_validator],
-        unique=True  # Ensure the phone number is unique
+        validators=[phone_number_validator, UniqueValidator(queryset=User.objects.all())]
     )
-    
-    # To create a user, we need to include the username, password, phone number, and date of birth
+
     class Meta:
         model = User
         fields = ['username', 'password', 'phone_number', 'date_of_birth']
-    
+
     def create(self, validated_data):
-        # Creating the user with hashed password
+        # Creating the user with a hashed password
         user = User.objects.create_user(**validated_data)
         return user
-
-    def validate_phone_number(self, value):
-        # Check if phone number is valid (through regex validator defined above)
-        if not phone_number_validator(value):
-            raise serializers.ValidationError("Enter a valid phone number.")
-        return value
-
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
